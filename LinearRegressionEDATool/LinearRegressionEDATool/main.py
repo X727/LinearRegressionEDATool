@@ -3,16 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.datasets import load_boston
-import LinearRegressionEDATool
+from LinearRegressionEDATool import linear_regression_eda_tool
 
 sns.set_style("whitegrid")
 
 def main():
     boston_data = load_boston()
     boston_data_features = pd.DataFrame(boston_data.data, columns=boston_data.feature_names)
-    #boston_data_features =  boston_data_features.values.reshape(-1,1)
     boston_data_target = boston_data.target
-    LinearRegressionEDATool.linear_regression_eda_tool(boston_data_features,boston_data_target)
+    linear_regression_eda_tool(boston_data_features,boston_data_target, ['Linear', 'LASSO'])
 
 
 
