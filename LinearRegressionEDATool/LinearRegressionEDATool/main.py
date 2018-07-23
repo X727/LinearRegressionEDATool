@@ -12,7 +12,7 @@ def main():
     boston_data_features = pd.DataFrame(boston_data.data, columns=boston_data.feature_names)
     #boston_data_features =  boston_data_features.values.reshape(-1,1)
     boston_data_target = boston_data.target
-    LinearRegressionEDATool.LinearRegressionEDATool(boston_data_features,boston_data_target)
+    LinearRegressionEDATool.linear_regression_eda_tool(boston_data_features,boston_data_target)
 
 
 
