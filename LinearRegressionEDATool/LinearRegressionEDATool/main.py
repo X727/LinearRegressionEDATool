@@ -11,7 +11,7 @@ def main():
     boston_data = load_boston()
     boston_data_features = pd.DataFrame(boston_data.data, columns=boston_data.feature_names)
     boston_data_target = boston_data.target
-    linear_regression_eda_tool(boston_data_features,boston_data_target, ['Linear', 'Ridge', 'HuberRegressor', 'RANSACRegressor'])
+    linear_regression_eda_tool(boston_data_features,boston_data_target, [ 'Ridge', 'BayesianRidge'])
 
 
 

@@ -3,60 +3,30 @@ from pltlearningcurve import plot_learning_curve
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sklearn.linear_model
 from sklearn.model_selection import ShuffleSplit
 from matplotlib.backends.backend_pdf import PdfPages
 
-def linear_regression_eda_tool(features, target, requested_regressions=['Linear']):
+
+def linear_regression_eda_tool(features, target, requested_regressions=['Ridge']):
+
+    """
+    Generate the learning curve for multiple linear regressions and print them to a file
+    Parameters
+    ----------
+    features : feature data to be used for your regression application
+
+    target: target data to be used for your regression application
+
+    requested_regressions: list of strings that contain the regressions you want to compare.
+                           Supports all the types in class sklearn.linear_model.
+                           See http://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model
+
+    """
     
     regression_models = dict()
     for r in requested_regressions:
-        if r == 'Linear':
-            from sklearn.linear_model import LinearRegression
-            regression_models[r]=LinearRegression()
-        elif r == 'Ridge':
-            from sklearn.linear_model import Ridge
-            regression_models[r]=Ridge()
-        elif r == 'Lasso':
-            from sklearn.linear_model import Lasso
-            regression_models[r]=Lasso()
-        elif r == 'MultiTaskLasso':
-            from sklearn.linear_model import MultiTaskLasso
-            regression_models[r]=MultiTaskLasso()
-        elif r == 'ElasticNet':
-            from sklearn.linear_model import ElasticNet
-            regression_models[r]=ElasticNet()
-        elif r == 'MultiTaskElasticNet':
-            from sklearn.linear_model import MultiTaskElasticNet
-            regression_models[r]=MultiTaskElasticNet()
-        elif r == 'Lars':
-            from sklearn.linear_model import Lars
-            regression_models[r]=Lars()
-        elif r == 'LassoLars':
-            from sklearn.linear_model import LassoLars
-            regression_models[r]=LassoLars()
-        elif r == 'OrthogonalMatchingPursuit':
-            from sklearn.linear_model import OrthogonalMatchingPursuit
-            regression_models[r]=OrthogonalMatchingPursuit()
-        elif r == 'BayesianRidge':
-            from sklearn.linear_model import BayesianRidge
-            regression_models[r]=BayesianRidge()
-        elif r == 'ARDRegression':
-            from sklearn.linear_model import ARDRegression
-            regression_models[r]=ARDRegression()
-        elif r == 'SGDRegressor':
-            from sklearn.linear_model import SGDRegressor
-            regression_models[r]=SGDRegressor()
-        elif r == 'RANSACRegressor':
-            from sklearn.linear_model import RANSACRegressor
-            regression_models[r]=RANSACRegressor()
-        elif r == 'TheilSenRegressor':
-            from sklearn.linear_model import TheilSenRegressor
-            regression_models[r]=TheilSenRegressor()
-        elif r == 'HuberRegressor':
-            from sklearn.linear_model import HuberRegressor
-            regression_models[r]=HuberRegressor()
-        else:
-            print(r + " is an unsupported regression type. Check if you have misspelled the name.")
+        get_regression_estimators(r, regression_models)
 
     i = 1
     output_file = PdfPages('LearningCurves.pdf')
@@ -70,5 +40,73 @@ def linear_regression_eda_tool(features, target, requested_regressions=['Linear'
        i = i+1
 
     output_file.close()
+
+def get_regression_estimators(r, regression_models):
+    if r == 'ARDRegression':
+        regression_models[r]=sklearn.linear_model.ARDRegression()
+    elif r == 'BayesianRidge':
+        regression_models[r]=sklearn.linear_model.BayesianRidge()
+    elif r == 'ElasticNet':
+        regression_models[r]=sklearn.linear_model.ElasticNet()
+    elif r == 'ElasticNetCV':
+        regression_models[r]=sklearn.linear_model.ElasticNetCV()
+    elif r == 'HuberRegressor':
+        regression_models[r]=sklearn.linear_model.HuberRegressor()
+    elif r == 'Lars':
+        regression_models[r]=sklearn.linear_model.Lars()
+    elif r == 'LarsCV':
+        regression_models[r]=sklearn.linear_model.LarsCV()
+    elif r == 'Lasso':
+        regression_models[r]=sklearn.linear_model.Lasso()
+    elif r == 'LassoCV':
+        regression_models[r]=sklearn.linear_model.LassoCV()
+    elif r == 'LassoLars':
+        regression_models[r]=sklearn.linear_model.LassoLars()
+    elif r == 'LassoLarsCV':
+        regression_models[r]=sklearn.linear_model.LassoLarsCV()
+    elif r == 'LassoLarsIC':
+        regression_models[r]=sklearn.linear_model.LassoLarsIC()
+    elif r == 'LinearRegression':
+        regression_models[r]=sklearn.linear_model.LinearRegression()
+    elif r == 'LogisticRegression':
+        regression_models[r]=sklearn.linear_model.LogisticRegression()
+    elif r == 'LogisticRegressionCV':
+        regression_models[r]=sklearn.linear_model.LogisticRegressionCV()
+    elif r == 'MultiTaskElasticNet':
+        regression_models[r]=sklearn.linear_model.MultiTaskElasticNet()
+    elif r == 'MultiTaskElasticNetCV':
+        regression_models[r]=sklearn.linear_model.MultiTaskElasticNetCV()
+    elif r == 'MultiTaskLasso':
+        regression_models[r]=sklearn.linear_model.MultiTaskLasso()
+    elif r == 'MultiTaskLassoCV':
+        regression_models[r]=sklearn.linear_model.MultiTaskLassoCV()
+    elif r == 'OrthogonalMatchingPursuit':
+        regression_models[r]=sklearn.linear_model.OrthogonalMatchingPursuit()
+    elif r == 'OrthogonalMatchingPursuitCV':
+        regression_models[r]=sklearn.linear_model.OrthogonalMatchingPursuitCV()
+    elif r == 'PassiveAggressiveClassifier':
+        regression_models[r]=sklearn.linear_model.PassiveAggressiveClassifier()
+    elif r == 'PassiveAggressiveRegressor':
+        regression_models[r]=sklearn.linear_model.PassiveAggressiveRegressor()
+    elif r == 'Perceptron':
+        regression_models[r]=sklearn.linear_model.Perceptron()
+    elif r == 'RANSACRegressor':
+        regression_models[r]=sklearn.linear_model.RANSACRegressor()
+    elif r == 'Ridge':
+        regression_models[r]=sklearn.linear_model.Ridge()
+    elif r == 'RidgeClassifier':
+        regression_models[r]=sklearn.linear_model.RidgeClassifier()
+    elif r == 'RidgeClassifierCV':
+        regression_models[r]=sklearn.linear_model.RidgeClassifierCV()
+    elif r == 'RidgeCV':
+        regression_models[r]=sklearn.linear_model.RidgeCV()
+    elif r == 'SGDClassifier':
+        regression_models[r]=sklearn.linear_model.SGDClassifier()
+    elif r == 'SGDRegressor':
+        regression_models[r]=sklearn.linear_model.SGDRegressor()
+    elif r == 'TheilSenRegressor':
+        regression_models[r]=sklearn.linear_model.TheilSenRegressor()
+    else:
+        print(r + " is an unsupported regression type. Check if you have misspelled the name.")
 
 
