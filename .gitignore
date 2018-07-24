@@ -433,3 +433,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#Generated Figures
+*.pdf
