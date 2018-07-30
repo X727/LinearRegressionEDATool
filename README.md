@@ -1,1 +1,7 @@
 # LinearRegressionEDATool
+
+A tool for Exploratory Data Analysis for Linear Regression Models. Takes in arbitrary list of linear regression models (supported by sklearn.linear_models, see http://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model), along with feature and target data, and plots learning curves for each specified model. The feature and target data are split using a Shuffle Split cross-validator of 100 splits and 20% data test size. The learning curves are plot using function defined in the scikit-learn documentation examples (see http://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html#sphx-glr-auto-examples-model-selection-plot-learning-curve-py).
+
+## Motivation 
+
+This project was done after doing several lectures in Regression for Machine Learning, as part of the Udemy course "The Complete Machine Learning Course with Python" (https://www.udemy.com/machine-learning-course-with-python/). While learning about the various types of linear regression, I saw the same commands being used continuously to see how they compare. I decided to encompass this into a function that can be used for later work to more efficiently compare learning curves for various models.

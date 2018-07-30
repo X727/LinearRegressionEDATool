@@ -1,5 +1,5 @@
 """
-plot learning curve function from scikit-learn documentation
+plot learning curve function defined in the scikit-learn documentation
 """
 
 import numpy as np
